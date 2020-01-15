@@ -1,0 +1,10 @@
+var rand = new Random();
+            Console.Write("Enter a number of elements n = ");
+            int n = int.Parse(Console.ReadLine());
+            int[] myArray11 = new int[n];
+            for (int i = 0; i < myArray11.Length; i++)
+            {
+                myArray11[i] = rand.Next(100);
+                Console.WriteLine($"myArray11[{i}]={myArray11[i]}; ");
+            }
+             
