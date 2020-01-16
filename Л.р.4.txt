@@ -1,5 +1,17 @@
-var rand = new Random();
-            Console.Write("Enter a number of elements n = ");
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Л.р._4
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var rand = new Random();
+            Console.Write("Enter the number of elements n = ");
             int n = int.Parse(Console.ReadLine());
             int[] myArray11 = new int[n];
             for (int i = 0; i < myArray11.Length; i++)
@@ -7,4 +19,87 @@ var rand = new Random();
                 myArray11[i] = rand.Next(100);
                 Console.WriteLine($"myArray11[{i}]={myArray11[i]}; ");
             }
-             
+            myArray11 = myArray11;
+            Console.WriteLine();
+            //find min el
+            int min = myArray11[0];
+            
+            for (int i = 0; i < myArray11.Length; i++)
+            {
+                if (min > myArray11[i])
+                    min = myArray11[i];                  
+            }
+            Console.WriteLine($"Минимальная цифра = {min}");
+            for (int i = 0; i < myArray11.Length; i++)
+            {
+                if (min == myArray11[i])
+                    Console.WriteLine($"Номер порядковый = {i}");
+            }
+            Console.WriteLine();
+            Console.Write("Впишите номер элемента, который выведен на экран, пожалуйста: ");
+            int ind_min = int.Parse(Console.ReadLine());
+            //remove this el
+            int[] myArrayWithout_min = new int[myArray11.Length - 1];
+            for (int i = 0; i <ind_min; i++)
+            {
+                myArrayWithout_min[i] = myArray11[i];
+            }
+            for (int i = ind_min; i < myArrayWithout_min.Length; i++)
+            {
+                myArrayWithout_min[i] = myArray11[i + 1];
+            }
+            for (int i = 0; i < myArrayWithout_min.Length; i++)
+            {
+                Console.WriteLine($"myArrayWithout_min[{i}]={myArrayWithout_min[i]}; ");
+            }
+            Console.WriteLine();
+            //add K
+            Console.Write("Введите K, меньшую или равную длине массива myArrayWithout_min: ");
+            int K = int.Parse(Console.ReadLine());
+            int Value = rand.Next(100);
+            int[] myArrayAddedK_element = new int[myArrayWithout_min.Length + 1];
+            for (int i = 0; i < K; i++)
+            {
+                myArrayAddedK_element[i] = myArrayWithout_min[i];
+            }
+            myArrayAddedK_element[K] = Value;
+            for (int i = K + 1; i < myArrayAddedK_element.Length; i++)
+            {
+                myArrayAddedK_element[i] = myArrayWithout_min[i - 1];
+            }
+            myArrayAddedK_element = myArrayAddedK_element;
+            for (int i = 0; i < myArrayAddedK_element.Length; i++)
+            {
+                Console.WriteLine($"myArrayAddedK_element[{i}]={myArrayAddedK_element[i]};");
+            }
+            Console.WriteLine();
+            //найдем min
+            int min2 = myArrayAddedK_element[0];
+            int min_el2 = 0;
+            for (int i = 0; i < myArrayAddedK_element.Length; i++)
+            {
+                if (min2 > myArrayAddedK_element[i])
+                    min2 = myArrayAddedK_element[i];
+            }
+            Console.WriteLine($"Минимальная цифра = {min2}");
+            for (int i = 0; i < myArrayAddedK_element.Length; i++)
+            {
+                if (min2 == myArrayAddedK_element[i])
+                    min_el2 = i;
+            }
+            Console.WriteLine($"Номер порядковый = {min_el2}");
+            //найдем max
+            int max2 = myArrayAddedK_element[0];
+            int max_el2 = 0;
+            for (int i = 0; i < myArrayAddedK_element.Length; i++)
+            {
+                if (max2 < myArrayAddedK_element[i])
+                    max2 = myArrayAddedK_element[i];
+            }
+            Console.WriteLine($"Максимальная цифра = {max2}");
+            for (int i = 0; i < myArrayAddedK_element.Length; i++)
+            {
+                if (max2 == myArrayAddedK_element[i])
+                    max_el2 = i;
+            }
+            Console.WriteLine($"Номер порядковый = {max_el2}");     
